@@ -1,0 +1,59 @@
+.error-message {
+    color: var(--ion-color-danger);
+}
+ion-content
+{
+    height: 800px;
+}
+.center {
+    margin: auto;
+    border: 3px solid #1e1e2d;
+    padding: 10px;
+  }
+  .vertical-align-content > *
+  {
+      // display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      height: 800px;
+      background:#bcd630 ;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 100%;
+      padding-top: 150px;
+  }
+  ion-input
+  {
+      // width: 250px;
+      font-size: 20px;
+      font-weight: 600;
+      // height: 30px;
+      border-radius: 10px;
+  }
+  ion-input::placeholder
+  {
+    color:#1bc5bd;
+    font-size: 12px;
+  }
+  .check_div{
+    font-size: 12px;
+  }
+  ion-input,ion-input:focus
+  {
+    background-color: #141415;color:#1bc5bd;
+  }
+ #login_lost_btn{
+    color:#1bc5bd;
+  }
+  .input-group-prepend , img
+  {
+    border-radius: 10px;
+    background-color: #141415;  
+  }
+  #hitLogin {
+    background-color: #1bc5bd;
+    border: none;
+    border-radius: 10px;
+  }
+  

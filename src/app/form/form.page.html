@@ -1,0 +1,96 @@
+<ion-content class="vertical-align-content">
+  <div class="ion-padding-horizontal center" style="background-color:#1e1e2d;color:aqua;height: 100%;">
+ 
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="8">
+        <ion-img src="../../assets/images/grobot_wimg.png"></ion-img>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <form [formGroup]="registrationForm"  autocompete="off" (ngSubmit)="submit()">
+      <div  class="row mt-3">      
+        <div class="col-12">
+                  <!-- <ion-text style="text-transform: capitalize;font-weight: 600;color: white;font-size: 22px;">Sign Up</ion-text>
+                  -->
+          
+              <!-- <ion-item class="mt-1">
+                <ion-label position="floating">Name</ion-label>
+                <ion-input formControlName="name" autocapitalize inputmode="text" maxlength="30" placeholder="Please Enter your name"></ion-input>
+              </ion-item>
+              <div *ngFor="let error of errorMessages.name">
+                <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                  <small class="error-message">{{error.message}}</small>
+                </ng-container>
+              </div> -->
+            
+              
+                <!-- <ion-label position="floating">Phone</ion-label>
+                <ion-input formControlName="phone" inputmode="tel"></ion-input>
+                <ion-icon name="phone-portrait"  slot="start" class="mr-1"></ion-icon> -->
+                <div class="input-group ">
+                  <div class="input-group-prepend" style="background-color: #141415;">
+                    <div class="input-group-text border-0" style="background-color: #141415;">
+                        <img src="../assets/images/envelop_icon.png" name="env"  style="background-color: #141415;" class="img-fluid"> 
+                    </div>
+                  </div>
+                  <ion-input type="text" class="form-control border-0 pl-0" formControlName="email" id="email" placeholder="Email"></ion-input>
+                </div>
+                <!-- <div *ngFor="let error of errorMessages.email">
+                  <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div> -->
+
+                <div class="input-group mt-3 mb-3">
+                  <div class="input-group-prepend" style="background-color: #141415;">
+                    <div class="input-group-text  border-0" style="background-color: #141415;">
+                        <img src="../assets/images/password_key_icon.png" name="pass" class="img-fluid"> 
+                    </div>
+                  </div>
+                  <ion-input type="text" class="form-control border-0 pl-0" formControlName="password" id="password" placeholder="Password"></ion-input>
+                </div>
+              
+                <div *ngFor="let error of errorMessages.password">
+                  <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
+              <!-- <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input formControlName="email" inputmode="email"></ion-input>
+                <ion-icon name="mail"   slot="start" class="mr-1"></ion-icon>
+              </ion-item> 
+              <div *ngFor="let error of errorMessages.email">
+                <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                  <small class="error-message">{{error.message}}</small>
+                </ng-container>
+              </div>-->
+              <div class="check_div row align-items-center mb-3 ">
+                <div class="col-6">
+                    <div class="checkbox remember text-left"> 
+                        <label class="mb-0">
+                        <input type="checkbox" name="rem_me" id="rem_me" value="1"> Remember me
+                        <span class="checkmark"></span>
+                        </label>
+
+                    </div>
+                </div>
+                <div class="check_div col-6 text-right"> 
+                    <a href="#" id="login_lost_btn" type="button" class=" p-0">Forgot Login?</a>                            
+                </div>
+              </div>
+
+              <button   type="submit" id="hitLogin"  class="btn btn-primary btn-block">Login</button>
+              <!-- <ion-icon slot="end" name="create"></ion-icon>
+              <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block" >Submit 
+                <ion-icon slot="end" name="create"></ion-icon></ion-button> -->
+        </div>
+ 
+       
+   
+      </div>
+   </form>
+   </div>
+ 
+</ion-content>

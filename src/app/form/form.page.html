@@ -34,13 +34,13 @@
                         <img src="../assets/images/envelop_icon.png" name="env"  style="background-color: #141415;" class="img-fluid"> 
                     </div>
                   </div>
-                  <ion-input type="text" class="form-control border-0 pl-0" formControlName="email" id="email" placeholder="Email"></ion-input>
+                  <ion-input type="email" class="form-control border-0 pl-0" formControlName="email" id="email" placeholder="Email"></ion-input>
                 </div>
-                <!-- <div *ngFor="let error of errorMessages.email">
+                <div *ngFor="let error of errorMessages.email">
                   <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
                     <small class="error-message">{{error.message}}</small>
                   </ng-container>
-                </div> -->
+                </div>
 
                 <div class="input-group mt-3 mb-3">
                   <div class="input-group-prepend" style="background-color: #141415;">
@@ -48,7 +48,7 @@
                         <img src="../assets/images/password_key_icon.png" name="pass" class="img-fluid"> 
                     </div>
                   </div>
-                  <ion-input type="text" class="form-control border-0 pl-0" formControlName="password" id="password" placeholder="Password"></ion-input>
+                  <ion-input type="password" class="form-control border-0 pl-0" formControlName="password" id="password" placeholder="Password"></ion-input>
                 </div>
               
                 <div *ngFor="let error of errorMessages.password">
@@ -81,7 +81,7 @@
                 </div>
               </div>
 
-              <button   type="submit" id="hitLogin"  class="btn btn-primary btn-block">Login</button>
+              <button [disabled]="!registrationForm.valid"  type="submit" id="hitLogin"  class="btn btn-primary btn-block">Login</button>
               <!-- <ion-icon slot="end" name="create"></ion-icon>
               <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block" >Submit 
                 <ion-icon slot="end" name="create"></ion-icon></ion-button> -->

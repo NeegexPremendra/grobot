@@ -22,6 +22,7 @@ export class FormPage {
   uemail='';
   upassword='';
   msg='';
+  showPassword:boolean=false;
   constructor(
     private formBuilder: FormBuilder,
     private _global: AppGlobal,
@@ -39,7 +40,10 @@ export class FormPage {
       this.router.navigate(['home']);
     }
   }
-
+  togglePasswordText() {
+    this.showPassword = !this.showPassword;
+    //console.log(this.showpassword);
+  }
   get email() {
     return this.registrationForm.get("email");
   }

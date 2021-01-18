@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button style="color: rgb(211, 72, 72); margin-top: 12px; margin-bottom:12px;" autoHide="false"></ion-menu-button>
-    </ion-buttons>
+<ion-header>
+  <div class="row">
+    <div class="col-8" style="background-color: #141415;">
+      <img src="../../assets/images/grobot_wimg.png" (click) = "loading('home')" style="height: 40px; margin: 10px 10px 0"/>
+    </div>
+    <div class="col-4" style="display:flex; padding-top:10px; align-items:center; justify-content: center;flex-direction: column; background-color: #141415;"> 
+        <ion-avatar style="height: 37px;text-align: center;" (click) = "loading('stu-dashboard')">
+      <img style="height: 35px; width: 35px; margin: 0 auto;" src="../../assets/images/admin-icon.png" />
+        </ion-avatar>
+        <ion-text style="text-transform: capitalize; font-size: 12px;color:white;text-align: center;"> {{ memFname }} {{ memLname }}</ion-text>
+      
+    </div>
+   
 
-    <ion-col size="12">
-      <ion-searchbar style="height:50px; padding:0;" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-    </ion-searchbar>
-  </ion-col>
-
-  </ion-toolbar>
+  </div>
+ 
 </ion-header>
 
 <ion-content [fullscreen]="true">
 <!-- Custom Refresher Content -->
-<ion-content>
+
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -23,15 +27,9 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-</ion-content>
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
+
+  <div>
     <div *ngIf="!dataLoaded">
       <div class="ion-padding custom-skeleton">
         <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
@@ -130,75 +128,38 @@
       </ion-list>
     </div>
     <div  *ngIf="dataLoaded">
-  
-    <div class="row m-3">
-      <div class="col-4 m-0 p-0">
-        <ion-label class="align-middle">
-          Select Record : 
-        </ion-label>
-      </div>
-      <div class="col m-0 p-0">
-       
-          <select class="form-control" [(ngModel)]="mySelect" (change)="getValue(mySelect)">
-            <option value="">- Select No of Record -</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>
-      </div>
-  </div>
-  
-  
-    <ion-card class="cardHome" *ngFor="let news of newsArray" >
-      <ion-row>
-        <ion-col *ngIf="news.newsImage != null" size="5" style="overflow: hidden;" >
-  
-          <img  class="homeImg" src="{{news.newsImage}}" (click)="getDetails(news)">
-        </ion-col>
-        <div *ngIf="news.newsImage != null; then ngs; else ngt"></div>
-        <ng-template #ngs>
-          <ion-col  size="7">
-            <ion-card-content class="ion-no-padding">
-              <p class="ion-text-left title" (click)="getDetails(news)">{{news.newsTitle}}</p>
-              <div style="margin-top: 15px;display:flex;justify-content: space-between;align-items: center;font-size:10px;">
-                <div class="ion-text-left">
-                  <span style="color:lightgray">Source : </span>
-                  <a href="{{ news.newsURL }}" style="color:blue;">{{news.newsSourceName}}</a>
-                  </div>
-    <!--            <ion-icon class="share" (click)="sShare(news.newsURL)" name="share-social-outline"></ion-icon>-->
-                <span>{{news.newsDate | timeago }}</span>
+      <div *ngFor="let act_list of activity">
+        <ul class="tabuler-list mx-1 mb-4" id="ActivitiesList">
+          <li class="hvr-shutter-out-horizontal hvr-icon-wobble-horizontal">
+            <div class="row align-items-center justify-contents-center">
+              
+              <div class="col-2 pl-0">
+                <span *ngIf="act_list.toLeadId" class="p-2 rounded">
+                <i class="fas fa-user-edit fa-2x hvr-icon"></i>
+              </span>
+              <span *ngIf="act_list.toCamId" class="p-2 rounded">
+                <i class="fas fa-chart-line fa-2x hvr-icon"></i>
+              </span>
+              <span *ngIf="act_list.emailID" class="p-2 rounded">
+                <i class="fas fa-envelope fa-2x hvr-icon"></i>
+              </span>
+              <span *ngIf="act_list.smsID" class="p-2 rounded">
+                <i class="fas fa-sms fa-2x hvr-icon"></i>
+              </span>
+
+            </div>
+            <div class="col-10 pr-1 pl-0">
+              <div class="title_list col-md-12 pr-0 pl-0">
+                <a href="https://grobot.ai/member/leads.php" target="_blank">{{ act_list.toFname}} {{ act_list.toLname}} </a>
+                  {{ act_list.notificationComment}} 
+                </div>
               </div>
-            </ion-card-content>
-          </ion-col>
-        </ng-template>
-        <ng-template #ngt>
-          <ion-col  size="12">
-            <ion-card-content class="ion-no-padding">
-              <p class="ion-text-left title" (click)="getDetails(news)">{{news.newsTitle}}</p>
-              <div style="margin-top: 15px;display:flex;justify-content: space-between;align-items: center;font-size:10px;">
-                <div class="ion-text-left">
-                  <span style="color:lightgray">Source : </span>
-                  <a href="{{ news.newsURL }}" style="color:blue;">{{news.newsSourceName}}</a></div>
-    <!--            <ion-icon class="share" (click)="sShare(news.newsURL)" name="share-social-outline"></ion-icon>-->
-                <span>{{news.newsDate | timeago }}</span>
-              </div>
-            </ion-card-content>
-          </ion-col>
-        </ng-template>
-      
-  
-      </ion-row>
-    </ion-card>
-    <div  *ngIf="dataLoaded" class="row m-3">
-      <div class="col text-right">
-       <button (click)="prevNews(prev)" *ngIf="showPrev" class="btn btn-primary btn-small"><ion-icon name="arrow-back-outline"></ion-icon> Prev</button>
-     </div>
-     <div class="col">
-       <button (click)="nextNews(next)" class="btn btn-primary  btn-small">Next <ion-icon name="arrow-forward-outline"></ion-icon></button>
-     </div>
-  </div>
-  </div>  
-  
-  </div>
+            </div>
+            <div class="clearfix"></div></li>
+        </ul>
+      </div>
+     
+    </div>
+    </div>
 </ion-content>
+<app-footer></app-footer>

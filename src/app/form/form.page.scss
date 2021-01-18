@@ -41,7 +41,9 @@ ion-input::placeholder
 }
 ion-input,ion-input:focus
 {
-  background-color: #141415;color:#1bc5bd;
+  background-color: #141415;
+  color:#1bc5bd;
+  font-size: 12px;
 }
 #login_lost_btn{
   color:#1bc5bd;
@@ -55,4 +57,9 @@ ion-input,ion-input:focus
   background-color: #1bc5bd;
   border: none;
   border-radius: 10px;
+}
+.input-group-text
+{
+  padding-left: 10px;
+  padding-right: 10px;
 }

@@ -1,0 +1,37 @@
+.vertical-align-content > *
+{
+    // display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 800px;
+    background:#141415;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    padding-top: 150px;
+}
+ 
+ion-input
+{
+     font-size: 20px;
+    font-weight: 600;
+}
+
+.validator-error
+{
+    color:white;
+}
+ion-item
+{
+    border-radius: 10px;
+    height: 45px;
+}
+ion-text
+{
+    font-weight: 600;font-size: 18px;
+}
+ion-icon
+{
+    font-weight: 600;font-size: 22px;
+}

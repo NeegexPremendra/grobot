@@ -1,7 +1,7 @@
 import { Component  } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NavController, Platform, ToastController ,LoadingController ,AlertController} from '@ionic/angular';
 import { AppGlobal } from '../app-global';
@@ -19,16 +19,27 @@ export class FormPage {
   apkList:any=[];
   nameArr='';
   appname='';
+  uemail='';
+  upassword='';
+  msg='';
   constructor(
     private formBuilder: FormBuilder,
     private _global: AppGlobal,
     private http: HttpClient,
     private toastCtrl: ToastController,
-    private router: Router
+    private loadingController: LoadingController,
+    private router: Router,
+    private route:ActivatedRoute,
     ) { }
-  // get name() {
-  //   return this.registrationForm.get("name");
-  // }
+  
+  ngOnInit()
+  {
+    if(localStorage.getItem('user'))
+    {
+      this.router.navigate(['home']);
+    }
+  }
+
   get email() {
     return this.registrationForm.get("email");
   }
@@ -52,7 +63,43 @@ export class FormPage {
  
   
   public submit() {
-    console.log(this.registrationForm.value);
+    this.uemail =this.registrationForm.value.email;
+    this.upassword =btoa(this.registrationForm.value.password);
+    const key = localStorage.getItem('record');
+    const data = { action: 'mem_login',email:this.uemail,password:this.upassword };
+    const header = { headers: { Authorization: 'Bearer '+key, Deviceid: localStorage.getItem('deviceId') } };
+    this.http.post(this._global.baseAppUrl, data, header).subscribe((response:any) => {
+          console.log(response); 
+          if (response.status === 'success') {
+            localStorage.setItem('user', JSON.stringify(response.data));
+            this.router.navigate(['home']);
+          }
+          else
+          {
+            this.msg = response.data.message;
+            this.presentToast(this.msg);
+          }
+       
+   })
+
+  }
+  async presentToast(msg) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  async loading(type)
+  {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 3000,
+      translucent: true,
+   })
+    await loading.present();
+    await this.router.navigate([`/${type}`]);
   }
 
 }
